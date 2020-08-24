@@ -9,6 +9,7 @@ def bad_two_sum?(arr, target)
     false
 end
 
+
 #time complexity: O(n^2)
 
 # arr = [0, 1, 5, 7]
