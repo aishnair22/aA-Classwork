@@ -108,34 +108,61 @@ def travoltas_busiest_years
   SQL
 end
 
+# def andrews_films_and_leads
+#   # List the film title and the leading actor for all of the films 'Julie
+#   # Andrews' played in.
+#   execute(<<-SQL)
+#     SELECT
+#       movies.title, actors.name
+#     FROM
+#       movies
+#     JOIN
+#       castings ON movies.id = castings.movie_id
+#     JOIN
+#       actors ON actors.id = castings.actor_id
+#     WHERE
+#       movies.title IN (
+#         SELECT
+#           movies.title
+#         FROM
+#           movies
+#         JOIN
+#           castings ON movies.id = castings.movie_id
+#         JOIN
+#           actors ON actors.id = castings.actor_id
+#         WHERE
+#           actors.name = 'Julie Andrews'
+#       ) 
+#       AND ord = 1
+#   SQL
+# end
+
+#JOINS METHOD
 def andrews_films_and_leads
-  # List the film title and the leading actor for all of the films 'Julie
-  # Andrews' played in.
+  # first two joins returns all of julie's movies
+  # third join adds in all the castings for each movie
+  # fourth join adds in the actor names for each casting for each movie
+  # now we can choose first actors name (julie_actors.name) and the last castings
+  # where the ord = 1(lead_castings.ord)
   execute(<<-SQL)
     SELECT
-      movies.title, actors.name
+      movies.title, lead_actors.name
     FROM
       movies
     JOIN
-      castings ON movies.id = castings.movie_id
+      castings AS julie_castings ON julie_castings.movie_id = movies.id
     JOIN
-      actors ON actors.id = castings.actor_id
+      actors AS julie_actors ON julie_castings.actor_id = julie_actors.id
+    JOIN
+      castings AS lead_castings ON lead_castings.movie_id = movies.id
+    JOIN
+      actors AS lead_actors ON lead_castings.actor_id = lead_actors.id
     WHERE
-      movies.title IN (
-        SELECT
-          movies.title
-        FROM
-          movies
-        JOIN
-          castings ON movies.id = castings.movie_id
-        JOIN
-          actors ON actors.id = castings.actor_id
-        WHERE
-          actors.name = 'Julie Andrews'
-      ) 
-      AND ord = 1
+      julie_actors.name = 'Julie Andrews' AND lead_castings.ord = 1;
   SQL
 end
+
+
 
 def prolific_actors
   # Obtain a list in alphabetical order of actors who've had at least 15
