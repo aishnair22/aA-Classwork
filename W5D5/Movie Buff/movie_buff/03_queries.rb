@@ -1,10 +1,8 @@
-#QUESTIONS: LINE 7, LINE 16
-
 def what_was_that_one_with(those_actors)
   # Find the movies starring all `those_actors` (an array of actor names).
   # Show each movie's title and id.
   Movie.select(:title, :id).joins(:actors)
-    .where(actors: {name: those_actors}).group#(:id)#
+    .where(actors: {name: those_actors}).group(:id)
     .having('COUNT(castings.actor_id) = (?)', those_actors.length)
 end
 
@@ -13,7 +11,7 @@ def golden_age
   
   Movie.select('AVG(score)', '((yr/10) * 10) AS decade_start')
   .order('AVG(score) DESC')
-  .group('((yr/10) * 10)') #in solution it uses decade_start, but how? order of execution
+  .group('((yr/10) * 10)') #in solution it uses decade_start, but only bc of rails magic
   .first
   .decade_start
 
