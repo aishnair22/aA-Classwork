@@ -1,0 +1,40 @@
+<h1>Edit your kitty!</h1>
+
+<form action = "<%= cat_url(@kitty) %>", method = "POST" >
+<input type = 'hidden' name = '_method' value = "PATCH">
+
+    <label>Name:
+        <input type="text" name ="cat[name]" >
+    </label>
+    <br>
+
+    <label for="color">Color</label>
+    <select id="color" name="cat[color]">
+        <option disabled selected>-- select a color --</option>
+        <% Cat::COLORS.each do |color| %>
+            <option value="<%=color%>"><%=color%></option>
+        <% end %>
+    </select>
+    <br>
+
+    <label>Birth Date:
+        <input type="date" name="cat[birth_date]">
+    </label>
+    <br>
+
+    <label>Sex:
+        <input type="radio" name="cat[sex]" value="M">
+        <label for="M">M</label>
+        <input type="radio" name="cat[sex]" value="F">
+        <label for="F">F</label>
+    </label>
+    <br>
+    
+    <label>Description:
+        <textarea type="text" name="cat[description]"></textarea>
+    </label>
+    <br>
+
+    <input type='submit' value='Update Cat'> 
+
+</form>
