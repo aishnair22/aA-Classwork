@@ -1,0 +1,30 @@
+<h2>Edit Track</h2>
+
+<form action="<%=track_url(@track)%>" method = "POST">
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label>Title
+        <input type="text" name="track[title]" value="<%=@track.title%>">
+    </label>
+    <br>
+    <label>Track Number
+        <input type="text" name="track[ord]" value="<%=@track.ord%>">
+    </label>
+    <br>
+    <label>Bonus track?
+        <label>Yes
+            <input type="radio" name="track[bonus_track?]" value="<%= true %>" <%= @track.bonus_track? == true ? "checked" : "" %>>
+        </label>
+        <label>No
+            <input type="radio" name="track[bonus_track]" value="<%= false %>" <%= @track.bonus_track? == false ? "checked" : "" %>>
+        </label>
+    </label>
+
+    <label>Lyrics (if available)
+        <input type="textarea" name="track[lyrics]" value="<%=@track.lyrics%>">
+    </label>
+
+    <input type="hidden" name="track[album_id]" value="<%=@track.album_id%>">
+    
+    <input type="submit" value="Edit track">
+</form>
