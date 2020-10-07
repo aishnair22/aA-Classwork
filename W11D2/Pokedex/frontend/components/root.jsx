@@ -11,6 +11,7 @@ const Root = ({ store }) => (
   </Provider>
 );
 
+// before HashRouter:
 // const Root = ({ store }) => (
 //   <Provider store={store}>
 //     <PokemonIndexContainer />
