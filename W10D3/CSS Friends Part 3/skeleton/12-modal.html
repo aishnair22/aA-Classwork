@@ -234,30 +234,28 @@
   </footer>
 
   <div class="modal is-open"> 
+    <form class="modal-form">
+      <div class="modal-close js-modal-close">&times;</div>
+      <h1>Welcome</h1>
+      <p>Please sign in to continue.</p>
+      </br>
+      <div class="input">
+        <label>Email</label>
+        <input type="text" value="sennacy@appacademy.io">
+      </div>
       
+      <div class="input">
+        <label>Password</label>
+        <input type="password" value="password">
+      </div>
+      
+      <div class="submit">
+        <button>Sign In</button>
+        <span class="button-alternative">or <strong class="js-modal-close">Cancel</strong></span>
+      </div>
+    </form>
 
-      <form class="modal-form">
-        <div class="modal-close js-modal-close">&times;</div>
-        <h1>Welcome</h1>
-        <p>Please sign in to continue.</p>
-        </br>
-        <div class="input">
-          <label>Email</label>
-          <input type="text" value="sennacy@appacademy.io">
-        </div>
-        
-        <div class="input">
-          <label>Password</label>
-          <input type="password" value="password">
-        </div>
-        
-        <div class="submit">
-          <button>Sign In</button>
-          <span class="button-alternative">or <strong class="js-modal-close">Cancel</strong></span>
-        </div>
-      </form>
-
-      <div class="modal-screen js-modal-close"></div>
+    <div class="modal-screen js-modal-close"></div>
   </div>
 
   <script src="../shared/js/jquery.js"></script>
